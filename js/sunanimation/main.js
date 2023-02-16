@@ -13,45 +13,49 @@ var game = new Phaser.Game(
 );
 
 function preload() {
-  game.load.image("ship", "./js/sunanimation/ship.png");
-  game.load.image("sun", "./js/sunanimation/sun.png");
+  game.load.image("solarPanel", "./js/sunanimation/solar-panel.svg");
+  game.load.image("sun", "./js/sunanimation/sun.svg");
 
   this.gameWidth = this.game.width;
   this.gameHeight = this.game.height;
 }
 
-var ship;
+var solarPanel;
 var orb;
 var cursors;
 
 function create() {
-  game.stage.backgroundColor = "#001255";
+  game.stage.backgroundColor = "#add8e6";
 
-  ship = game.add.sprite(this.gameWidth / 2, this.gameHeight / 2, "ship");
-  ship.anchor.setTo(0.5, 0.5);
+  solarPanel = game.add.sprite(
+    this.gameWidth / 2,
+    this.gameHeight / 2,
+    "solarPanel"
+  );
+  solarPanel.anchor.setTo(0.5, 0.5);
 
-  game.physics.arcade.enable(ship);
+  game.physics.arcade.enable(solarPanel);
 
   orb = game.add.sprite(this.gameWidth / 2, this.gameHeight / 2, "sun");
-  orb.anchor.setTo(0.5);
-  orb.pivot.x = 100;
+  orb.anchor.setTo(1);
+  orb.pivot.x = 200;
 }
 
 function update() {
-  orb.rotation += 0.02;
+  orb.rotation += 0.01;
 
   resizeAnimation(this.game);
 }
 
 function preRender() {
-  orb.x = ship.x;
-  orb.y = ship.y;
+  orb.x = solarPanel.x;
+  orb.y = solarPanel.y;
 }
 
 function resizeAnimation(game) {
   game.scale.setGameSize(sunAnimationContainer.offsetWidth, 600);
-  ship.x = game.width / 2;
-  ship.y = game.height / 2;
+  solarPanel.x = game.width / 2;
+  solarPanel.y = game.height / 2;
   orb.x = game.width / 2;
   orb.y = game.height / 2;
 }
