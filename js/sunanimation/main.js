@@ -15,9 +15,6 @@ var game = new Phaser.Game(
 function preload() {
   game.load.image("solarPanel", "./js/sunanimation/solar-panel.svg");
   game.load.image("sun", "./js/sunanimation/sun.svg");
-
-  this.gameWidth = this.game.width;
-  this.gameHeight = this.game.height;
 }
 
 var solarPanel;
@@ -28,17 +25,17 @@ function create() {
   game.stage.backgroundColor = "#add8e6";
 
   solarPanel = game.add.sprite(
-    this.gameWidth / 2,
-    this.gameHeight / 2,
+    this.game.width / 2 + 20,
+    this.game.height / 2,
     "solarPanel"
   );
   solarPanel.anchor.setTo(0.5, 0.5);
 
   game.physics.arcade.enable(solarPanel);
 
-  orb = game.add.sprite(this.gameWidth / 2, this.gameHeight / 2, "sun");
-  orb.anchor.setTo(1);
-  orb.pivot.x = 200;
+  orb = game.add.sprite(this.game.width / 2, this.game.height / 2, "sun");
+  orb.anchor.setTo(0.75);
+  orb.pivot.x = 150;
 }
 
 function update() {
@@ -54,7 +51,7 @@ function preRender() {
 
 function resizeAnimation(game) {
   game.scale.setGameSize(sunAnimationContainer.offsetWidth, 600);
-  solarPanel.x = game.width / 2;
+  solarPanel.x = game.width / 2 + 20;
   solarPanel.y = game.height / 2;
   orb.x = game.width / 2;
   orb.y = game.height / 2;
